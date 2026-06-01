@@ -31,7 +31,7 @@ Azure 上で Web / API / DB の三層構造を実際に構築しながら、
 - Web / API / DB の三層アプリケーション  
 - Hub-Spoke ネットワーク  
 - Azure Firewall による通信制御  
-  ※個人検証環境のため Bastion はコスト面から除外  
+  ※個人検証環境のため作成後はすぐにデストロイ  
 - Private Endpoint による DB の非公開化  
 - Log Analytics によるログ監視  
 
