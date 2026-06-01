@@ -72,7 +72,8 @@ IaC 化（Terraform によるコード化・テンプレート化）
 - Module 4 – DNS & Custom Domain Configuration  
 - Module 5 – Infrastructure as Code（Terraform）
 
-   
+
+
 ┌─────────────────────────────────┐
 
 │ Project A: 3-Tier E-Commerce Prototype on Azure 　│
