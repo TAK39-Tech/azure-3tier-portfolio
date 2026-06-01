@@ -6,7 +6,7 @@ Secure 3-Tier Web Application Infrastructure on Azure (Hub-Spoke architecture wi
 本プロジェクトでは、Epic → Task → Sub-task の階層で要件分解を行っています。
 Sub-task は細かい作業単位のため、README では折りたたんだ状態で掲載しています。
 
-### Epic / Story / Task 一覧
+### Epic / Task 一覧
 ![Jira List 1](docs/images/jira-list-1.png)
 ![Jira List 2](docs/images/jira-list-2.png)
 
