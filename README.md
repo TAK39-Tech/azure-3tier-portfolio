@@ -110,7 +110,7 @@ IaC 化（Terraform によるコード化・テンプレート化）
   ├─ A / CNAME レコード
   └─ App Service Custom Domain 設定
 
-【Module 5：Full IaC (Terraform)】
+【Module 5：Infrastructure as Code（Terraform）】
   ├─ Terraform Modules
   │    ├─ network
   │    ├─ compute/app
