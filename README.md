@@ -9,7 +9,6 @@ Jira を用いて Epic → Story → Task の粒度で要件分解・進捗管�
 ### Epic / Story / Task 一覧
 ![Jira List 1](docs/images/jira-list-1.png)
 ![Jira List 2](docs/images/jira-list-2.png)
-![Jira List 3](docs/images/jira-list-3.png)
 
 ---
 
@@ -18,6 +17,7 @@ Jira を用いて Epic → Story → Task の粒度で要件分解・進捗管�
 
 ![Backlog 1](docs/images/jira-backlog-1.png)
 ![Backlog 2](docs/images/jira-backlog-2.png)
+![Backlog 3](docs/images/jira-backlog-3.png)
 
 ---
 
