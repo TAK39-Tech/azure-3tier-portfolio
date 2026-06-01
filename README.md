@@ -139,7 +139,7 @@ Terraform /パラメータ化、IaC デプロイ、GitHub 反映、構成図追�
 
 ---
 
-## 4. 事前準備（完了済み）
+## 4. 事前準備（完了済み・一部未着手）
 プロジェクトを安全に進めるため、以下の準備を完了しています。
 
 - Azure 上にリソース展開用の Resource Group / Storage Account を作成  
@@ -147,7 +147,7 @@ Terraform /パラメータ化、IaC デプロイ、GitHub 反映、構成図追�
 - apply 暴走防止のため plan-only テストを実施  
 - Azure Budget によるコストアラート設定  
 - 手動構築 → IaC 化の順番を整理  
-
+- GUI で構築した内容は後で Terraform に置き換える予定
 ---
 
 ## 5. 最終成果物（予定）
