@@ -1,10 +1,10 @@
 # azure-3tier-portfolio
 Secure 3-Tier Web Application Infrastructure on Azure (Hub-Spoke architecture with Azure Firewall and Private Endpoints) built using Terraform and GitHub Actions.
 
-## Project Management (Jira)
+## Jira Task Breakdown (Epic → Task → Sub-task)
 
-本プロジェクトでは、Azure 上に 3-Tier Web アプリケーション基盤を構築するために  
-Jira を用いて Epic → Story → Task の粒度で要件分解・進捗管理を行いました。
+本プロジェクトでは、Epic → Task → Sub-task の階層で要件分解を行っています。
+Sub-task は細かい作業単位のため、README では折りたたんだ状態で掲載しています。
 
 ### Epic / Story / Task 一覧
 ![Jira List 1](docs/images/jira-list-1.png)
