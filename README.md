@@ -140,14 +140,27 @@ Terraform /パラメータ化、IaC デプロイ、GitHub 反映、構成図追�
 ---
 
 ## 4. 事前準備（完了済み・一部未着手）
-プロジェクトを安全に進めるため、以下の準備を完了しています。
+本プロジェクトを安全かつ再現性高く進めるため、以下の基盤準備を実施しています。
+GUI で構築したリソースは、後続フェーズで Terraform に置き換える予定です。
 
-- Azure 上にリソース展開用の Resource Group / Storage Account を作成  
-- Terraform → GitHub → 自動デプロイの動作テスト  
-- apply 暴走防止のため plan-only テストを実施  
+### ■ Azure 基盤準備（完了）
+- Resource Group（アプリ / ネットワーク / 監視 / DNS / tfstate 用）を作成  
+- Terraform backend 用 Storage Account / Container を作成  
+- Log Analytics Workspace を作成  
 - Azure Budget によるコストアラート設定  
-- 手動構築 → IaC 化の順番を整理  
-- GUI で構築した内容は後で Terraform に置き換える予定
+- GitHub Actions（OIDC）による Azure Login の動作確認  
+- Terraform → GitHub Actions → Azure の plan-only 動作テスト  
+
+### ■ アプリ・ネットワークの初期構築（GUI / 一部未着手）
+- Web / API / DB の初期構築（GUI）  
+- Hub VNet の作成（GUI）  
+- Spoke / Private Endpoint / Firewall は後続フェーズで構築予定  
+- GUI で構築した内容は後で Terraform に置き換える（IaC 化）  
+
+### ■ プロジェクト進行方針（整理済み）
+- 「手動構築 → 動作確認 → Terraform 化」の順で進める  
+- コスト最適化のため、Firewall など高額リソースは検証後に destroy  
+- スプリント計画に沿って Module ごとに段階的に構築  
 ---
 
 ## 5. 最終成果物（予定）
