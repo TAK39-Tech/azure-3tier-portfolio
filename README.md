@@ -54,6 +54,30 @@ Day 11〜12
 IaC 化（Terraform によるコード化・テンプレート化）
 Day 13〜14  
 最終まとめ（ドキュメント整理、構成図作成、スプリントレビュー）
+
+■ Jira（プロジェクト管理詳細）
+Epics（全体構成）
+Module 1 – 3-Tier Application（Web / API / DB）
+Module 2 – Network Foundation（Hub-Spoke / Firewall / UDR）
+Module 3 – Operations Automation（Monitor / Logic Apps / Alerts）
+Module 4 – DNS & Custom Domain Configuration
+Module 5 – Infrastructure as Code（Terraform / Bicep）
+
+Sprint Overview（要約）
+Sprint 1：アプリ構築  
+Web / API / DB の作成、接続確認、App Service 設定、DB 初期化
+
+Sprint 2：ネットワーク基盤  
+Hub / Spoke、NSG、UDR、Peering、Firewall、疎通テスト
+
+Sprint 3：監視・運用  
+Log Analytics、Diagnostic Settings、アラート、Logic Apps、Dashboard
+
+Sprint 4：DNS / SSL  
+DNS Zone、A レコード、カスタムドメイン、SSL、HTTPS 検証
+
+Sprint 5：IaC / GitHub  
+Terraform / Bicep、パラメータ化、IaC デプロイ、GitHub 反映、構成図追加
 ---
 
 ## 4. 事前準備（完了済み）
