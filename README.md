@@ -70,7 +70,9 @@ IaC 化（Terraform によるコード化・テンプレート化）
 - Module 2 – Network Foundation（Hub-Spoke / Firewall / UDR）  
 - Module 3 – Operations Automation（Monitor / Logic Apps / Alerts）  
 - Module 4 – DNS & Custom Domain Configuration  
-- Module 5 – Infrastructure as Code（Terraform / Bicep）  
+- Module 5 – Infrastructure as Code（Terraform）
+
+-   
 ┌─────────────────────────────────────────────────┐
 │ Project A：3-Tier E-Commerce Prototype on Azure │ 
 └─────────────────────────────────────────────────┘
@@ -108,7 +110,7 @@ IaC 化（Terraform によるコード化・テンプレート化）
   ├─ A / CNAME レコード
   └─ App Service Custom Domain 設定
 
-【Module 5：Full IaC (Terraform/Bicep)】
+【Module 5：Full IaC (Terraform)】
   ├─ Terraform Modules
   │    ├─ network
   │    ├─ compute/app
@@ -133,7 +135,7 @@ Log Analytics、Diagnostic Settings、アラート、Logic Apps、Dashboard
 DNS Zone、A レコード、カスタムドメイン、SSL、HTTPS 検証
 
 **Sprint 5：IaC / GitHub**  
-Terraform / Bicep、パラメータ化、IaC デプロイ、GitHub 反映、構成図追加
+Terraform /パラメータ化、IaC デプロイ、GitHub 反映、構成図追加
 
 ---
 
