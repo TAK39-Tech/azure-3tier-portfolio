@@ -1,6 +1,24 @@
 # azure-3tier-portfolio
 Secure 3-Tier Web Application Infrastructure on Azure (Hub-Spoke architecture with Azure Firewall and Private Endpoints) built using Terraform and GitHub Actions.
 
+## Project Management (Jira)
+
+本プロジェクトでは、Azure 上に 3-Tier Web アプリケーション基盤を構築するために  
+Jira を用いて Epic → Story → Task の粒度で要件分解・進捗管理を行いました。
+
+### Epic / Story / Task 一覧
+![Jira List 1](docs/images/jira-list-1.png)
+![Jira List 2](docs/images/jira-list-2.png)
+![Jira List 3](docs/images/jira-list-3.png)
+
+---
+
+## Sprint Planning (Backlog)
+スプリント 1〜5 に分割し、段階的に構築できるよう計画しています。
+
+![Backlog 1](docs/images/jira-backlog-1.png)
+![Backlog 2](docs/images/jira-backlog-2.png)
+
 ---
 
 # Azure 3-Tier Architecture Project  
