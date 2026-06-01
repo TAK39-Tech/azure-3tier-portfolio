@@ -72,56 +72,54 @@ IaC 化（Terraform によるコード化・テンプレート化）
 - Module 4 – DNS & Custom Domain Configuration  
 - Module 5 – Infrastructure as Code（Terraform）
 
+```text
+┌──────────────────────────────────────────────────────────────┐
+│ Project A: 3-Tier E-Commerce Prototype on Azure              │
+└──────────────────────────────────────────────────────────────┘
 
-
-┌─────────────────────────────────┐
-
-│ Project A: 3-Tier E-Commerce Prototype on Azure 　│
-
-└─────────────────────────────────┘
-
-
-【Module 1：Application (Web/App/DB)】
+【Module 1: Application (Web/App/DB)】
   ├─ Web App (App Service)
   ├─ API App (App Service)
   └─ Database (MySQL Flexible Server or Azure SQL)
 
-【Module 2：Network (Hub-Spoke + Firewall + UDR)】
+【Module 2: Network (Hub-Spoke + Firewall + UDR)】
   ├─ Internet
   ├─ Azure Firewall
   ├─ Hub VNet
   │    ├─ Firewall Policy
   │    └─ Private DNS Zone
   └─ Spoke VNet
-       ├─ Subnet-Web（NSG-Web）
+       ├─ Subnet-Web (NSG-Web)
        │    ├─ Web LB
        │    └─ Web App
-       ├─ Subnet-App（NSG-App）
+       ├─ Subnet-App (NSG-App)
        │    ├─ App LB
        │    └─ API App
-       └─ Subnet-DB（NSG-DB）
+       └─ Subnet-DB (NSG-DB)
             ├─ Private Endpoint
             └─ Database
 
-【Module 3：Monitoring Automation (Logic Apps + Teams)】
+【Module 3: Monitoring Automation (Logic Apps + Teams)】
   ├─ Azure Monitor
   ├─ Log Analytics Workspace
-  ├─ Logic Apps（Alert → Teams 通知）
-  └─ Teams Channel（通知先）
+  ├─ Logic Apps (Alert → Teams Notification)
+  └─ Teams Channel
 
-【Module 4：DNS + Custom Domain】
+【Module 4: DNS + Custom Domain】
   ├─ Azure DNS Zone
-  ├─ A / CNAME レコード
-  └─ App Service Custom Domain 設定
+  ├─ A / CNAME Records
+  └─ App Service Custom Domain
 
-【Module 5：Infrastructure as Code（Terraform）】
+【Module 5: Infrastructure as Code (Terraform)】
   ├─ Terraform Modules
   │    ├─ network
   │    ├─ compute/app
   │    ├─ database
   │    └─ monitoring
-  ├─ GitHub Actions（CI/CD）
-  └─ Remote State（Azure Storage + Key Vault）
+  ├─ GitHub Actions (CI/CD)
+  └─ Remote State (Azure Storage + Key Vault)
+```
+
 
 
 ### Sprint Overview（要約）
