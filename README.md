@@ -73,12 +73,9 @@ IaC 化（Terraform によるコード化・テンプレート化）
 - Module 5 – Infrastructure as Code（Terraform）
 
 -   
-┌─────────────────────────────────────────────────┐
-│
+┌─────────────────────────────────────────────────┐│ Project A: 3-Tier E-Commerce Prototype on Azure │
 
-Project A: 3-Tier E-Commerce Prototype on Azure │
 └─────────────────────────────────────────────────┘
-
 
 
 【Module 1：Application (Web/App/DB)】
