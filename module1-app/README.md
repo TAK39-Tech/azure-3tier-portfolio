@@ -125,5 +125,6 @@ graph TD
 - **セキュリティ担保の証明**：API側のApp Serviceへの直接アクセスを遮断し、セキュリティ上フロントのWeb層だけアクセスが可能となっている状態を担保。
 
 ### ③ Web 画面に DB のデータの反映
-![DBデータ動的反映](../docs/images/db-data-reflection.png)
+![DBデータ動的反映](../docs/images/DBデータ反映前.png)
+![DBデータ動的反映](../docs/images/DBデータ反映後.png)
 - **データ連動の証明**：MySQL内のレコード値を変更し、それがAPIを経由してWeb画面にリアルタイムかつ動的に反映されることを確認済みです。
