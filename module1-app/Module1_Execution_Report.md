@@ -1,4 +1,4 @@
-# 🌐 【最終提出用】Azure 3層Webアプリケーション インフラ構築実績（Module 1 完了版）
+#  【最終提出用】Azure 3層Webアプリケーション インフラ構築実績（Module 1 完了版）
 
 ## 1. 概要（Overview）
 Node.js（Web）× Node.js（API）× MySQL（DB）によるクラウドネイティブな 3 層アプリケーション基盤を Azure 上に構築。
@@ -20,24 +20,8 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - Firewall による接続元制限
 
 ###  Azure 3層Webアプリケーション構成図
-```mermaid
-graph TD
-    subgraph Web層 [フロントエンド: App Service Web]
-        A[独自Node.jsサーバー: server.js] --> B(index.html 動的加工/返却)
-    end
-
-    subgraph API層 [バックエンド: App Service API]
-        C[Node.js / Express API]
-    end
-
-    subgraph DB層 [データベース]
-        D[(Azure Database for MySQL Flexible Server)]
-    end
-
-    A -->|① HTTPリクエスト / CORS不要| C
-    B -->|② ブラウザ経由の本番通信 / CORS必要| C
-    C -->|③ SQLクエリ / SSL暗号化接続| D
-```
+### 📐 Azure 3層Webアプリケーション構成図
+![Azure3層構成図](./docs/images/architecture.png)
 
 ## 3. WBS に基づくタスク実行実績（Execution Based on WBS）
 実務を想定し、要件からタスクを分解（WBS化）。スプリント計画に沿って Module 1 を完了。
@@ -58,7 +42,7 @@ graph TD
 - **目的**：画面に DB のデータを表示するための本番 API 呼び出し。
 - **特徴**：Web と API が別ドメインのため CORS が必要。API → DB が失敗している場合、画面にデータは表示されない。
 
-👉 **この 2 種類の通信により、“Web 画面は正常に表示されるが、DB の結果だけ表示されない” といった状態を正しく検知・表示できる構成となっている。**
+ **この 2 種類の通信により、“Web 画面は正常に表示されるが、DB の結果だけ表示されない” といった状態を正しく検知・表示できる構成となっている。**
 
 ---
 
