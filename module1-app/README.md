@@ -113,7 +113,7 @@ graph TD
 ## 6. Module 1 完了エビデンス
 
 ### ① 外部アクセスからWebブラウザ閲覧
-![Webブラウザ疎通成功画面](../docs/images/web-browser-view.png)
+![Webブラウザ疎通成功画面](../docs/images/Web-Api-DB.png)
 
 - **エンドツーエンドの疎通検証ロジック**：
   1. **Web ➔ API の疎通確認**：Web層のNode.jsサーバー（server.js）からAPIのエンドポイントへサーバー間通信を実行。APIから応答が返ってきた時点で、Web層がHTML内の「Web ➔ API」ステータスを🟢（有効）に加工。
@@ -121,7 +121,7 @@ graph TD
   3. **データ取得による結合証明**：APIがDBから `SELECT` クエリで商品データを動的に取得し、成功ステータス（`status: "API_SUCCESS_OK"`）を返却。Web層のサーバー（server.js）がこのレスポンス内容をフックし、フロントエンド（React）画面の「API ➔ DB」ランプを🟢（有効）に動的変換した上でブラウザへ画面を返却しています。
 
 ### ② APIのWebAppは外部からの接続を拒否設定
-![APIアクセス拒否画面](../docs/images/api-403-forbidden.png)
+![APIアクセス拒否画面](../docs/images/Api拒否.png)
 - **セキュリティ担保の証明**：API側のApp Serviceへの直接アクセスを遮断し、セキュリティ上フロントのWeb層だけアクセスが可能となっている状態を担保。
 
 ### ③ Web 画面に DB のデータの反映
