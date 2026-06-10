@@ -20,7 +20,6 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - Firewall による接続元制限
 
 ###  Azure 3層Webアプリケーション構成図
-###  Azure 3層Webアプリケーション構成図
 ![Azure3層構成図](./docs/images/architecture-diagram.png)
 
 ## 3. WBS に基づくタスク実行実績（Execution Based on WBS）
