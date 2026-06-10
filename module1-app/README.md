@@ -38,28 +38,21 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 ---
 
 - **✔ Web 基盤構築（Node.js Web サーバー）**
-  - App Service（Web）作成
-  - Japan West のクォータ制限を回避
-  - `server.js` / `index.html` をデプロイ
-  - pm2 による Node.js 常駐起動
+  - App Service（Web）作成、Japan West のクォータ制限を回避
+  - `server.js` / `index.html` をデプロイ、pm2 による Node.js 常駐起動
   - ブラウザでの動作確認（HTTP 200 / 動的 HTML 生成）
 - **✔ API 基盤構築**
   - App Service（API）作成（Web と同一プランでコスト最適化）
-  - CORS 設定で Web → API の通信を許可
-  - Node.js ランタイムの起動検証（pm2 / Oryx）
+  - CORS 設定で Web → API の通信を許可、Node.js ランタイムの起動検証（pm2 / Oryx）
 - **✔ DB 基盤構築**
-  - MySQL Flexible Server 作成（Japan East）
-  - Firewall による接続元制限
-  - 最小権限ユーザー作成
+  - MySQL Flexible Server 作成（Japan East）、Firewall による接続元制限、最小権限ユーザー作成
   - SSL/TLS 必須設定に対応（`rejectUnauthorized: false`）
 - **✔ Web → API 結合**
   - 環境変数（`API_URL`）で API エンドポイントを安全に管理
-  - Web 層の `server.js` から API へ疎通テスト（http/https リクエスト）
-  - API のレスポンス内容を Web 画面に動的表示
+  - Web 層の `server.js` から API へ疎通テスト（http/https リクエスト）を実行し、レスポンス内容を Web 画面に動的表示
 - **✔ API → DB 結合**
   - Connection String を App Service の環境変数に安全に配置
-  - SELECT クエリの実行成功
-  - API → DB → API の往復通信を確認
+  - SELECT クエリの実行成功、API → DB → API の往復通信を確認
 
 ## 4. 課題解決（Troubleshooting 実績）
 
@@ -69,7 +62,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 - **強み**：表面的なステータスコードに依存せず、インフラとアプリの境界を理解した上で論理的に切り分けできる。
 
 ### 事象②：MySQL が SSL 必須設定により接続を拒否（セキュリティ要件）
-- **原因**：MySQL Flexible Server 側の初期セキュリティ要件（`require_secure_transport=ON`）により、非暗号化の接続試行がすべて遮断されていた。
+- **原因**：MySQL Flexible Server 側の初期セキュリティ要件（`require_secure_transport=ON`）により、非暗号化 of 接続試行がすべて遮断されていた。
 - **対策**：Node.js（mysql2）の接続時オプションに `ssl: { rejectUnauthorized: true }` を追加し、クラウド特有のセキュリティ要件に準拠したセキュアなコードへと修正。
 - **強み**：インフラ側の求める暗号化要件を理解し、セキュアなアプリケーションの実装コードに落とし込める。
 
@@ -98,20 +91,14 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 <!-- 💡 ここにアプリ画面とNetworkタブが左右に並んだスクショを貼る -->
 
 - **エンドツーエンドの疎通検証ロジック**：
-  1. **Web ➔ API の疎通確認**：Web層のNode.jsサーバー（server.js）からAPIのエンドポイントへサーバー間通信を実行。APIから応答が返ってきた時点で、Web層がHTML内の「Web ➔ API」ステータスを🟢（有効）に加工します。
+  1. **Web ➔ API の疎通確認**：Web層のNode.jsサーバー（server.js）からAPIのエンドポイントへサーバー間通信を実行。APIから応答が返ってきた時点で、Web層がHTML内の「Web ➔ API」ステータスを🟢（有効）に加工。
   2. **API ➔ DB のSSL/TLS結合確認**：API内部でAzureの環境変数を検証後、`ssl: { rejectUnauthorized: true }` を有効化した状態でMySQL Flexible Serverへセキュアに接続。
   3. **データ取得による結合証明**：APIがDBから `SELECT` クエリで商品データを動的に取得し、成功ステータス（`status: "API_SUCCESS_OK"`）を返却。Web層のサーバー（server.js）がこのレスポンス内容をフックし、フロントエンド（React）画面の「API ➔ DB」ランプを🟢（有効）に動的変換した上でブラウザへ画面を返却しています。
 
 ### ② APIのWebAppは外部からの接続を拒否設定
 <!-- 💡 ここに403 Forbiddenのスクショを貼る -->
-- **セキュリティ担保の証明**：API側のApp Serviceへの直接アクセスを遮断し、セキュリティ上フロントのWeb層だけアクセスが可能となっている状態を担保しています。
+- **セキュリティ担保の証明**：API側のApp Serviceへの直接アクセスを遮断し、セキュリティ上フロントのWeb層だけアクセスが可能となっている状態を担保。
 
 ### ③ Web 画面に DB のデータの反映
 <!-- 💡 ここにMySQL変更前・変更後の比較スクショを貼る -->
-- **データ連動の証明**：MySQL内のレコード値を変更し、それがAPIを経由してWeb画面（商品名や価格）にリアルタイムかつ動的に反映されることを確認済みです。
-
-
-## 6. 構築・結合エビデンス（検証結果）
-
-### ■ 3層結合・疎通テスト成功画面
-<!-- 💡 ここに、アプリ画面とデベロッパーツールのNetworkタブを左右に並べたスクショ（1枚）を貼り付ける -->
+- **データ連動の証明**：MySQL内のレコード値を変更し、それがAPIを経由してWeb画面にリアルタイムかつ動的に反映されることを確認済み。
