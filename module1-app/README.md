@@ -19,7 +19,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - 最小権限ユーザーで運用
   - Firewall による接続元制限
 
-### 📐 Azure 3層Webアプリケーション構成図
+###  Azure 3層Webアプリケーション構成図
 ```mermaid
 graph TD
     subgraph Web層 [フロントエンド: App Service Web]
