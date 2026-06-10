@@ -54,7 +54,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - CORS 設定で Web → API の通信を許可、Node.js ランタイムの起動検証（pm2 / Oryx）
 - **✔ DB 基盤構築**
   - MySQL Flexible Server 作成（Japan East）、Firewall による接続元制限、最小権限ユーザー作成
-  - SSL/TLS 必須設定に対応（`rejectUnauthorized: false`）
+  - SSL/TLS 必須設定に対応（`rejectUnauthorized: true`）
 - **✔ Web → API 結合**
   - 環境変数（`API_URL`）で API エンドポイントを安全に管理
   - Web 層の `server.js` から API へ疎通テスト（http/https リクエスト）を実行し、レスポンス内容を Web 画面に動的表示
@@ -128,7 +128,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 - **エンドツーエンドの疎通検証ロジック**：
   1. **Web ➔ API の疎通確認**：Web層のNode.jsサーバー（server.js）からAPIのエンドポイントへサーバー間通信を実行。APIから応答が返ってきた時点で、Web層がHTML内の「Web ➔ API」ステータスを🟢（有効）に加工。
   2. **API ➔ DB のSSL/TLS結合確認**：API内部でAzureの環境変数を検証後、`ssl: { rejectUnauthorized: true }` を有効化した状態でMySQL Flexible Serverへセキュアに接続。
-  3. **データ取得による結合証明**：APIがDBから `SELECT` クエリで商品データを動的に取得し、成功ステータス（`status: "API_SUCCESS_OK"`）を返却。Web層のサーバー（server.js）がこのレスポンス内容をフックし、フロントエンド（React）画面の「API ➔ DB」ランプを🟢（有効）に動的変換した上でブラウザへ画面を返却しています。
+  3. **データ取得による結合証明**：APIがDBから `SELECT` クエリで商品データを動的に取得し、成功ステータス（`status: "API_SUCCESS_OK"`）を返却。Web層のサーバー（server.js）がこのレスポンス内容をフックし、画面の「API ➔ DB」ランプを🟢（有効）に動的変換した上でブラウザへ画面を返却しています。
 
 ### ② APIのWebAppは外部からの接続を拒否設定
 ![APIアクセス拒否画面](../docs/images/Api拒否.png)
