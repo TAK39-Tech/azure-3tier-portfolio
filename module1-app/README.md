@@ -43,7 +43,7 @@ graph TD
 実務を想定し、要件からタスクを分解（WBS化）。スプリント計画に沿って Module 1 を完了。
 
 ### ■ Jiraスプリントタスク完了実績
-![Jiraスプリント完了実績](../docs/images/jira-list-1.png)
+![Jiraスプリント完了実績](../docs/images/JiraM1完了.png)
 
 ---
 
