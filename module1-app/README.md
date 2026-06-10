@@ -11,7 +11,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - API 疎通テスト機能を内蔵
   - pm2 による常駐起動
 - **API層**：Azure App Service（Linux / Node.js）
-  - Express ベースの API
+  - Express ベース of API
   - DB 接続処理を担当
   - CORS 設定でブラウザからのアクセスを許可
 - **DB層**：Azure Database for MySQL – Flexible Server
@@ -19,8 +19,33 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   - 最小権限ユーザーで運用
   - Firewall による接続元制限
 
+### 📐 Azure 3層Webアプリケーション構成図
+```mermaid
+graph TD
+    subgraph Web層 [フロントエンド: App Service Web]
+        A[独自Node.jsサーバー: server.js] --> B(index.html 動的加工/返却)
+    end
+
+    subgraph API層 [バックエンド: App Service API]
+        C[Node.js / Express API]
+    end
+
+    subgraph DB層 [データベース]
+        D[(Azure Database for MySQL Flexible Server)]
+    end
+
+    A -->|① HTTPリクエスト / CORS不要| C
+    B -->|② ブラウザ経由の本番通信 / CORS必要| C
+    C -->|③ SQLクエリ / SSL暗号化接続| D
+```
+
 ## 3. WBS に基づくタスク実行実績（Execution Based on WBS）
 実務を想定し、要件からタスクを分解（WBS化）。スプリント計画に沿って Module 1 を完了。
+
+### ■ Jiraスプリントタスク完了実績
+![Jiraスプリント完了実績](../docs/images/jira-list-1.png)
+
+---
 
 ### ✔ Web → API 結合（2種類の通信の役割を明確化）
 本構成では Web 層（Node.js）と API 層（Node.js）が別 App Service のため、以下の 2種類の通信 が発生する。
@@ -62,12 +87,12 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 - **強み**：表面的なステータスコードに依存せず、インフラとアプリの境界を理解した上で論理的に切り分けできる。
 
 ### 事象②：MySQL が SSL 必須設定により接続を拒否（セキュリティ要件）
-- **原因**：MySQL Flexible Server 側の初期セキュリティ要件（`require_secure_transport=ON`）により、非暗号化 of 接続試行がすべて遮断されていた。
+- **原因**：MySQL Flexible Server 側の初期セキュリティ要件（`require_secure_transport=ON`）により、非暗号化の接続試行がすべて遮断されていた。
 - **対策**：Node.js（mysql2）の接続時オプションに `ssl: { rejectUnauthorized: true }` を追加し、クラウド特有のセキュリティ要件に準拠したセキュアなコードへと修正。
 - **強み**：インフラ側の求める暗号化要件を理解し、セキュアなアプリケーションの実装コードに落とし込める。
 
 ### 事象③：非同期処理の順序問題により画面へデータが反映されない
-- **原因**：API（Node.js）内部で非同期処理（`fs.readFile`等）のハンドリングが不適切であり、DB からのデータ取得が完了する前に、空の状態で HTML やレスポンスを返却していた。
+- **原因**：API（Node.js）内部で非同期処理（`fs.readFile`等）のハンドリングが不適切であり、DB からのデータ取得が完了する前に、空の状態の HTML やレスポンスを返却していた。
 - **対策**：`fs.promises.readFile` ＋ `await` による非同期制御へのリファクタリングを実施し、プログラムの実行順序を厳密に制御。
 - **強み**：アプリコードのバグと、インフラのデータ疎通不良を切り分けてボトルネックを特定できる。
 
@@ -88,7 +113,7 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
 ## 6. Module 1 完了エビデンス
 
 ### ① 外部アクセスからWebブラウザ閲覧
-<!-- 💡 ここにアプリ画面とNetworkタブが左右に並んだスクショを貼る -->
+![Webブラウザ疎通成功画面](../docs/images/web-browser-view.png)
 
 - **エンドツーエンドの疎通検証ロジック**：
   1. **Web ➔ API の疎通確認**：Web層のNode.jsサーバー（server.js）からAPIのエンドポイントへサーバー間通信を実行。APIから応答が返ってきた時点で、Web層がHTML内の「Web ➔ API」ステータスを🟢（有効）に加工。
@@ -96,9 +121,9 @@ Web 層は独自の Node.js サーバー（server.js）を App Service 上で稼
   3. **データ取得による結合証明**：APIがDBから `SELECT` クエリで商品データを動的に取得し、成功ステータス（`status: "API_SUCCESS_OK"`）を返却。Web層のサーバー（server.js）がこのレスポンス内容をフックし、フロントエンド（React）画面の「API ➔ DB」ランプを🟢（有効）に動的変換した上でブラウザへ画面を返却しています。
 
 ### ② APIのWebAppは外部からの接続を拒否設定
-<!-- 💡 ここに403 Forbiddenのスクショを貼る -->
+![APIアクセス拒否画面](../docs/images/api-403-forbidden.png)
 - **セキュリティ担保の証明**：API側のApp Serviceへの直接アクセスを遮断し、セキュリティ上フロントのWeb層だけアクセスが可能となっている状態を担保。
 
 ### ③ Web 画面に DB のデータの反映
-<!-- 💡 ここにMySQL変更前・変更後の比較スクショを貼る -->
-- **データ連動の証明**：MySQL内のレコード値を変更し、それがAPIを経由してWeb画面にリアルタイムかつ動的に反映されることを確認済み。
+![DBデータ動的反映](../docs/images/db-data-reflection.png)
+- **データ連動の証明**：MySQL内のレコード値を変更し、それがAPIを経由してWeb画面にリアルタイムかつ動的に反映されることを確認済みです。
