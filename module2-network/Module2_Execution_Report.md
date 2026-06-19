@@ -1,8 +1,10 @@
+#【最終提出用】Azure 3層Webアプリケーション インフラ構築実績（Module 2 完了版）
+
 [← 企画書（トップページ）に戻る](../index.html)
 
-# azure-3tier-portfolio
+azure-3tier-portfolio
 
-【最終提出用】Azure 3層Webアプリケーション インフラ構築実績（Module 2 完了版）
+
 
 ## 1. 概要（Overview）
 Node.js（Web）× Node.js（API）× MySQL（DB）の3層アプリケーション基盤を収容するため、エンタープライズ要件を満たすセキュアな「ハブ・アンド・スポーク（Hub-Spoke）」ネットワークトポロジをAzure上に手動（GUI）にて構築。インターネットと内部ネットワークの境界に次世代ファイアウォール（Azure Firewall）を挟む進路制御を実装し、実務レベルのセキュアなインフラ共通基盤の検証プロセスを再現しました。
