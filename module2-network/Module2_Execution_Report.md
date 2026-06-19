@@ -71,7 +71,7 @@ Node.js（Web）× Node.js（API）× MySQL（DB）の3層アプリケーショ�
 
 ### ① Azure Firewall（Basic SKU）の正常デプロイおよびIPアドレス証明
 
-![Azure Firewall 概要画面](../docs/images/FWconfigured)
+![Azure Firewall 概要画面](../docs/images/FWconfigured.png)
 
 * **インフラ基盤の構築およびプレーン分離の証明**：
   Azure Firewall Basicのデプロイに成功し、状態が「成功（Succeeded）」、プライベートIPアドレスとして本番検問所用の 10.0.1.4 が正しく割り当てられている証拠。
