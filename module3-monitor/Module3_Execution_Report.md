@@ -19,7 +19,7 @@
 
 #### ■ システム連携イメージ（視覚的フロー）
 <!-- 先ほど生成した日本語構成図の画像をリポジトリ内に配置し、パスを以下に指定してください -->
-![Module 3 運用自動化＆監視アーキテクチャ](./images/Module3_M3_Architecture.png)
+![Module 3 運用自動化＆監視アーキテクチャ](../docs/images/_M3_Architecture.png)
 
 #### ■ データフロー詳細（構造化テキスト）
 ```text
@@ -76,7 +76,7 @@
 
 ## 3. Jira に基づくタスク実行実績（Execution Based on Tasks）
 
-![Module 3 Jiraに基づくタスク実績](./images/Module3_Jira_task.png)
+![Module 3 Jiraに基づくタスク実績](../docs/images/Module3_Jira_task.png)
 
 ### ① Enable Monitor / Configure Logs
 - **LAWのDaily Cap設定**: Log Analytics ワークスペースのデータインジェスト上限を「0.05GB/日（50MB）」に制限し、検証中の意図しない大量ログによる課金バグを設計レベルで防止。
@@ -129,12 +129,12 @@
 ### ① Logic Apps による「3色動的アラートルート選別」メール受信エビデンス
 - **説明**: 実際にWebアプリを意図的に停止・遅延させるテストを行い、共通アラートスキーマ関数 alertRule が正常にJSONを解読したことを証明する。CPU負荷、応答遅延、可用性停止の3つの障害ごとに、Logic Appが条件分岐（ネスト構造）に従って件名と本文を動的に書き分け、それぞれの担当アドレスへ自動配送した実際のメール受信画面。
 
-![Logic Apps 3色自動選別メール受信エビデンス](./images/evidence_email.png)
+![Logic Apps 3色自動選別メール受信エビデンス](../docs/images/evidence_email.png)
 
 ### ② カスタマイズされた運用ダッシュボード（Azure Monitor ブック）の全体エビデンス
 - **説明**: Azureポータルにパブリッシュ（公開保存）した Azure 3-Tier Portfolio Dashboard の全体画面。以下の3つのこだわり抜いたカスタムグラフが1画面に統合されている様子を示す。
 
-![Azure Monitor ブック 全体ダッシュボードエビデンス](./images/evidence_dashboard.png)
+![Azure Monitor ブック 全体ダッシュボードエビデンス](../docs/images/evidence_dashboard.png)
 
 ### ③ 各監視コンポーネントのプロ仕様カスタマイズ詳細エビデンス
 
@@ -142,4 +142,4 @@
 - **HTTPステータスコードの割合（円グラフ）**: 凡例が「200」などの無機質な数字ではなく、KQLの `case` 関数によって「200 (成功)」「302 (リダイレクト)」と親切な日本語メタデータに変換され、アクセス回数が「千(K)」に丸められず「3,450」などの生の整数（桁区切り）で表示されている画面。
 - **Webアクセス数の推移（折れ線グラフ）**: 縦軸（Y軸）の数値が「〇〇千」ではなく「2、4、6、8…」と純粋な整数にフォーマット統一され、上部に『Webアクセス数の推移 (5分粒度)』という太字タイトルが配置されている画面。
 
-![ダッシュボード詳細カスタマイズエビデンス](./images/evidence_details.png)
+![ダッシュボード詳細カスタマイズエビデンス](../docs/images/evidence_details.png)
