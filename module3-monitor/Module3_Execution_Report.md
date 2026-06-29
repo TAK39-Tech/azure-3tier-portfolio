@@ -134,9 +134,20 @@
 ![Logic Apps 自動選別メール受信エビデンス運用](../docs/images/運用チーム宛.png)
 
 ### ② Logic App のデザイナー画面全体エビデンス
-- **説明**: Azure Monitorからの通知を処理するLogic App（la-portfolio-alerts）の「ロジック アプリ デザイナー」の全体画面です。共通アラートスキーマ（Common Alert Schema）のJSONペイロードからアラート名（ルール名）をピンポイントで抽出するため、以下の判定式を条件分岐（Condition）の入力値として実装しています。
+
+- **説明**: 
+  Azure Monitorからの通知を処理するLogic App（la-portfolio-alerts）の「ロジック アプリ デザイナー」の全体画面です。
+  共通アラートスキーマ（Common Alert Schema）のJSONペイロードからアラート名（ルール名）をピンポイントで抽出するため、以下の判定式を条件分岐（Condition）の入力値として実装しています。
+
+  ```text
+  triggerBody()?['data']?['essentials']?['alertRule']
+  ```
+
+  この関数によって動的に解読されたアラート名をもとに、条件分岐をネスト（入れ子）構造で構成し、「CPU負荷（メールA宛）」「応答遅延（メールB宛）」「可用性停止（メールC宛）」の3つの独立したルートへ自動配送（ルーティング）するロジックを完全構築したことを証明しています。
 
 ![Azure Monitor ブック 全体ダッシュボードエビデンス](../docs/images/メールルール設定.png)
+
+
 
 ### ③ 各監視コンポーネントのプロ仕様カスタマイズ詳細エビデンス
 
