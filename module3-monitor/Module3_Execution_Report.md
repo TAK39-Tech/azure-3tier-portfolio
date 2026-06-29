@@ -76,6 +76,8 @@
 
 ## 3. Jira に基づくタスク実行実績（Execution Based on Tasks）
 
+![Module 3 Jiraに基づくタスク実績](./images/Module3_Jira_task.png)
+
 ### ① Enable Monitor / Configure Logs
 - **LAWのDaily Cap設定**: Log Analytics ワークスペースのデータインジェスト上限を「0.05GB/日（50MB）」に制限し、検証中の意図しない大量ログによる課金バグを設計レベルで防止。
 - **診断設定の選別**: コスト削減のため、インフラメトリック（PerfやAzureMetricsなど）の転送を無効化。Web Appの HTTP logs と AppServiceConsoleLogs のみに絞り込んでLAWへリアルタイム転送するようフィルタリング。
