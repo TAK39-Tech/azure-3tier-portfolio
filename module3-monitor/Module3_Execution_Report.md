@@ -18,38 +18,38 @@
 ### 【構成図】Module 3: Operations Automation ＆ Monitoring Architecture
 
 #### ■ システム連携イメージ（視覚的フロー）
-<!-- 💡先ほど生成した日本語構成図の画像をリポジトリ内に配置し、パスを以下に指定してください -->
+<!-- 先ほど生成した日本語構成図の画像をリポジトリ内に配置し、パスを以下に指定してください -->
 ![Module 3 運用自動化＆監視アーキテクチャ](./images/Module3_Architecture.png)
 
 #### ■ データフロー詳細（構造化テキスト）
 ```text
 [監視対象リソース]
-  ├── Web App (Frontend)  ───┐ 💡同一のApplication Insightsを紐付け
+  ├── Web App (Frontend)  ───┐ 同一のApplication Insightsを紐付け
   ├── API App (Backend)   ───┴──> [ Application Insights ]
   └── App Service Plan              │ (世界5拠点のAzure施設からのURL死活監視)
         │                           │
-        │ 💡診断設定の最適化         │ 💡可用性テストログ
+        │ 診断設定の最適化         │ 可用性テストログ
         └─(HTTP logs / Console)─┐  │
                                 │  │
                                 ▼  ▼
                    [ Log Analytics ワークスペース ]
                         (law-project)
-                   ⚠️ Daily Cap: 0.05GB制限 (コスト爆発防止)
+                    Daily Cap: 0.05GB制限 (コスト爆発防止)
                         │           │
       ┌─────────────────┘           └─────────────────┐
-      │ 📊 0円での可視化 (KQL)                        │ 🚨 メトリック/ログ監視
+      │  可視化 (KQL)                        │  メトリック/ログ監視
       ▼                                               ▼
 [ Azure Monitor ブック ]                      [ Azure Monitor Alerts ]
  (Azure 3-Tier Portfolio Dashboard)                ├── ① CPU負荷アラート
   ├── 1. 可用性グリッド (Success)                  ├── ② 応答遅延アラート
   ├── 2. ステータス割合 (円グラフ)                 └── ③ 可用性停止アラート
   └── 3. アクセス数推移 (折れ線グラフ)                     │
-                                                          │ 🚨 共通アラートスキーマで発火
+                                                          │  共通アラートスキーマで発火
                                                           ▼
                                               [ Logic App: la-portfolio-alerts ]
                                                (Consumptionプラン: 月4,000回まで無料)
                                                           │
-                                                          ▼ 💡ネスト構造による条件分岐
+                                                          ▼ ネスト構造による条件分岐
                                                [ @{triggerBody()...alertRule} ]
                                                     ├── CPU負荷 ──> 担当宛メールA
                                                     ├── 応答遅延 ──> 担当宛メールB
@@ -73,7 +73,7 @@
 
 ---
 
-## 3. WBS に基づくタスク実行実績（Execution Based on Tasks）
+## 3. Jira に基づくタスク実行実績（Execution Based on Tasks）
 
 ### ① Enable Monitor / Configure Logs
 - **LAWのDaily Cap設定**: Log Analytics ワークスペースのデータインジェスト上限を「0.05GB/日（50MB）」に制限し、検証中の意図しない大量ログによる課金バグを設計レベルで防止。
