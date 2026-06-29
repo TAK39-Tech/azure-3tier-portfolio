@@ -137,13 +137,15 @@
 
 - **説明**: 
   Azure Monitorからの通知を処理するLogic App（la-portfolio-alerts）の「ロジック アプリ デザイナー」の全体画面です。
-  共通アラートスキーマ（Common Alert Schema）のJSONペイロードからアラート名（ルール名）をピンポイントで抽出するため、以下の判定式を条件分岐（Condition）の入力値として実装しています。
+  共通アラートスキーマ（Common Alert Schema）のJSONペイロードからアラート名を抽出する式 `triggerBody()?['data']?['essentials']?['alertRule']` を各Condition（条件分岐）の入力値に設定し、3分岐のネスト（入れ子）構造を実装しています。
 
-  ```text
-  triggerBody()?['data']?['essentials']?['alertRule']
-  ```
-
-  この関数によって動的に解読されたアラート名をもとに、条件分岐をネスト（入れ子）構造で構成し、「CPU負荷（メールA宛）」「応答遅延（メールB宛）」「可用性停止（メールC宛）」の3つの独立したルートへ自動配送（ルーティング）するロジックを完全構築したことを証明しています。
+  **【Conditionごとの割り当て仕様】**
+  - **最上層の Condition**: 判定式の結果が `alert-webapp-cpu-high` と等しいかを判定。
+    - **True ルート**: `メールの送信 (V2)` を実行（担当宛メールAへ配信）。
+    - **False ルート**: 次の `Condition 1` へ処理を引き渡す。
+  - **ネストされた Condition 1**: 判定式の結果が `alert-webapp-response-time-high` と等しいかを判定。
+    - **True ルート**: `メールの送信 (V2) 1` を実行（担当宛メールBへ配信）。
+    - **False ルート**: いずれの条件にも合致しない可用性停止アラートとみなし、`メールの送信 (V2) 2` を実行（担当宛メールCへ配信）。
 
 ![Azure Monitor ブック 全体ダッシュボードエビデンス](../docs/images/メールルール設定.png)
 
