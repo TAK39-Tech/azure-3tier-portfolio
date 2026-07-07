@@ -23,11 +23,11 @@
    ▼ 
 [ Azure DNS Zone ] (tiktak-dev.com)
    │
-   ├── ① ://tiktak-dev.com (CNAME転送) ──> [ Web App ] (web-3tier-demo-tak2026)
+   ├── ① www.tiktak-dev.com (CNAME転送) ──> [ Web App ] (web-3tier-demo-tak2026)
    │                                            │ (App Serviceマッピング)
    │                                            └── ssl_state: "SniEnabled" (常時HTTPS)
    │
-   └── ② ://tiktak-dev.com (CNAME転送) ──> [ API App ] (api-3tier-demo-tak2026)
+   └── ② api.tiktak-dev.com (CNAME転送) ──> [ API App ] (api-3tier-demo-tak2026)
                                                 │ (App Serviceマッピング)
                                                 └── ssl_state: "SniEnabled" (常時HTTPS)
 ```
